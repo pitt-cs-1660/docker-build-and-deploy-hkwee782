@@ -1,12 +1,12 @@
 # stage 1: builder
 
-FROM golang:1.23
+FROM golang:1.23 AS builder
 
 WORKDIR /app
 
-COPY go.mod
-COPY main.go
-COPY /templates/.
+COPY go.mod .
+COPY main.go .
+COPY /templates ./templates/
 
 RUN CGO_ENABLED=0 go build -o my-docker-app .
 
@@ -16,8 +16,8 @@ FROM scratch
 
 WORKDIR /app
 
-COPY --from=builder /app/my-docker-app
-COPY --from=builder /app/templates/.
+COPY --from=builder /app/my-docker-app .
+COPY --from=builder /app/templates ./templates
 
 EXPOSE 5000
 
