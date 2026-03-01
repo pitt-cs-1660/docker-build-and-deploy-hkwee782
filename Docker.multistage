@@ -1,0 +1,18 @@
+# stage 1: builder
+
+FROM golang:1.23
+
+COPY go.mod
+COPY main.go
+COPY /templates
+
+RUN CGO_ENABLED=0 go build -o my-docker-app .
+
+# stage 2: runtime final image
+
+FROM scratch
+
+COPY my-docker-app
+COPY /templates
+
+CMD ["golang", "my-docker-app.go"]
