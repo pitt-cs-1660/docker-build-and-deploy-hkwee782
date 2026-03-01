@@ -31,6 +31,6 @@ jobs:
         run: |
           # todo: replace this step with your docker build, tag, and push commands
           docker build -t my-docker-app:latest .
-          docker tag my-docker-app:latest ${{ env.ACCOUNT_ID }}.dkr.ecr.${{ env.REGION }}.amazonaws.com/$my-docker-app:latest
-          docker push ${{ env.ACCOUNT_ID }}.dkr.ecr.${{ env.REGION }}.amazonaws.com/$my-docker-app:latest
+          docker tag my-docker-app:latest ${{ env.ACCOUNT_ID }}.dkr.ecr.${{ env.REGION }}.amazonaws.com/my-docker-app:latest
+          docker push ${{ env.ACCOUNT_ID }}.dkr.ecr.${{ env.REGION }}.amazonaws.com/my-docker-app:latest
           # refer to docs/docker-commands.md for guidance on the required commands
